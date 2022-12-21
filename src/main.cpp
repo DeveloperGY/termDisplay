@@ -15,5 +15,11 @@ int main(void)
     td_display();
 
     td_terminate();
+
+    while (getch() != 'e')
+    {
+        
+    }
+
     return 0;
 }

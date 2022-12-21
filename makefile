@@ -1,7 +1,7 @@
 src = src/*.cpp
 bin = bin
 out = $(bin)/out
-obj = ../obj/initialization.o ../obj/draw.o
+obj = ../obj/initialization.o ../obj/draw.o ../obj/helpers.o
 
 
 

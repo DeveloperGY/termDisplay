@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stddef.h>
 
+#include <termios.h>
+
 /**
  * @brief Width of the buffers
 */
@@ -176,9 +178,12 @@ void td_drawRect(int x, int y, unsigned int width, unsigned int height, char str
 extern "C" {
 #endif
 
-
-// unbuffered character input using termios.h
-// char getch();
+/**
+ * @brief An unbuffered character input function to remove the need
+ *        to press enter to input a character
+ * 
+*/
+char getch();
 
 #ifdef __cplusplus
 }
