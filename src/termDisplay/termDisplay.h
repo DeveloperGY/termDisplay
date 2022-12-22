@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <math.h>
+#include <string.h>
 
 #include <termios.h>
 
@@ -180,6 +181,34 @@ void td_drawRect(int x, int y, unsigned int width, unsigned int height, char str
 */
 void td_drawLine(int x1, int y1, int x2, int y2, char c, int fgColor, int bgColor);
 
+/**
+ * @brief Draws text horizontally at the specified coordinates with the specified colors
+ * 
+ * @param x The X Coordinate
+ * @param y The Y Coordinate
+ * 
+ * @param str The text to print (must be null terminated)
+ * 
+ * @param fgColor The foreground color
+ * @param bgColor The background color
+ * 
+*/
+void td_drawTextHorizontal(int x, int y, const char *str, int fgColor, int bgColor);
+
+/**
+ * @brief Draws text verically at the specified coordinates with the specified colors
+ * 
+ * @param x The X Coordinate
+ * @param y The Y Coordinate
+ * 
+ * @param str The text to print (must be null terminated)
+ * 
+ * @param fgColor The foreground color
+ * @param bgColor The background color
+ *  
+*/
+void td_drawTextVertical(int x, int y, const char *str, int fgColor, int bgColor);
+
 #ifdef __cplusplus
 }
 #endif
@@ -196,7 +225,9 @@ extern "C" {
 /**
  * @brief An unbuffered character input function to remove the need
  *        to press enter to input a character
- * 
+ *
+ * @warning Linux only!!!
+ *  
 */
 char getch();
 

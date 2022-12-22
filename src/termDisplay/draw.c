@@ -221,3 +221,27 @@ void td_drawLine(int x1, int y1, int x2, int y2, char c, int fgColor, int bgColo
 
     return;
 }
+
+void td_drawTextHorizontal(int x, int y, const char *str, int fgColor, int bgColor)
+{
+    size_t len = strlen(str);
+
+    for (int i=0; i<len; i++)
+    {
+        td_drawPoint(x+i, y, str[i], fgColor, bgColor);
+    }
+
+    return;
+}
+
+void td_drawTextVertical(int x, int y, const char *str, int fgColor, int bgColor)
+{
+    size_t len = strlen(str);
+
+    for (int i=0; i<len; i++)
+    {
+        td_drawPoint(x, y+i, str[i], fgColor, bgColor);
+    }
+
+    return;
+}
