@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <math.h>
 
 #include <termios.h>
 
@@ -163,7 +164,21 @@ void td_drawFillRect(int x, int y, unsigned int width, unsigned int height, char
 */
 void td_drawRect(int x, int y, unsigned int width, unsigned int height, char stroke, char fill, int strokeFGColor, int strokeBGColor, int fillFGColor, int fillBGColor);
 
-// draw line
+/**
+ * @brief Draws a line between the selected coordinates with the specified character and colors
+ * 
+ * @param x1 X Coordinate of the first point
+ * @param y1 Y Coordinate of the first point
+ * 
+ * @param x2 X Coordinate of the second point
+ * @param y2 Y Coordinate of the second point
+ * 
+ * @param c The character to draw
+ * 
+ * @param fgColor The foreground color
+ * @param bgColor The background color
+*/
+void td_drawLine(int x1, int y1, int x2, int y2, char c, int fgColor, int bgColor);
 
 #ifdef __cplusplus
 }
