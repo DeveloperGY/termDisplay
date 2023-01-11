@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include <termios.h>
+#include <sys/select.h>
 
 /**
  * @brief Width of the buffers
@@ -37,6 +38,12 @@ extern int **TD_FG_COLOR_BUFFER;
 extern int **TD_BG_COLOR_BUFFER;
 
 /**
+ * @brief Buffer to combine the color and character buffers
+ * 
+*/
+extern char *TD_PRINT_BUFFER;
+
+/**
  *  Colors
  *  Uses ansi escape sequences to display colors
  * 
@@ -55,6 +62,17 @@ extern int TD_COLOR_WHITE;
  * @brief The offset between ansi color codes
 */
 extern int TD_FG_TO_BG_OFFSET;
+
+/**
+ * @brief Saved terminal settings
+ * 
+*/
+extern struct termios old_settings;
+
+/**
+ * @brief TD terminal settings
+*/
+extern struct termios new_settings;
 
 /**
  * Initialization Functions
@@ -226,10 +244,12 @@ extern "C" {
  * @brief An unbuffered character input function to remove the need
  *        to press enter to input a character
  *
+ * @param max_wait_time the amount of time in milliseconds to wait for input, use zero if you dont want to wait
+ * 
  * @warning Linux only!!!
- *  
+ * @return returns the pressed character, or NULL if there is no pressed character or there is an error
 */
-char getch();
+char getch(unsigned int max_wait_time);
 
 #ifdef __cplusplus
 }

@@ -19,18 +19,40 @@ void td_display()
         return;
     }
 
-	printf("\e[1;1H\e[2J"); // Clear the terminal using escape sequences
+	// printf("\e[1;1H\e[2J"); // Clear the terminal using escape sequences
+    printf("\e[H");
 
-    // change to create a string with a singular print call
+    char fg_color_str[3];
+    char bg_color_str[3];
+
+    size_t index = 0;
 
     for (int i=0; i<TD_HEIGHT; i++)
     {
         for (int j=0; j<TD_WIDTH; j++)
         {
-            printf("\x1b[%d;%dm%c\x1b[m", TD_FG_COLOR_BUFFER[i][j], TD_BG_COLOR_BUFFER[i][j], TD_CHAR_BUFFER[i][j]);
+            snprintf(fg_color_str, 3, "%d", TD_FG_COLOR_BUFFER[i][j]);
+            snprintf(bg_color_str, 3, "%d", TD_BG_COLOR_BUFFER[i][j]);
+
+            TD_PRINT_BUFFER[index++] = '\x1b';
+            TD_PRINT_BUFFER[index++] = '[';
+            TD_PRINT_BUFFER[index++] = fg_color_str[0];
+            TD_PRINT_BUFFER[index++] = fg_color_str[1];
+            TD_PRINT_BUFFER[index++] = ';';
+            TD_PRINT_BUFFER[index++] = bg_color_str[0];
+            TD_PRINT_BUFFER[index++] = bg_color_str[1];
+            TD_PRINT_BUFFER[index++] = 'm';
+            TD_PRINT_BUFFER[index++] = TD_CHAR_BUFFER[i][j];
+            TD_PRINT_BUFFER[index++] = '\x1b';
+            TD_PRINT_BUFFER[index++] = '[';
+            TD_PRINT_BUFFER[index++] = 'm';
         }
-        printf("\n");
+        TD_PRINT_BUFFER[index++] = '\n';
     }
+
+    TD_PRINT_BUFFER[index] = '\0';
+
+    printf("%s", TD_PRINT_BUFFER);
 
     for (int i=0; i<TD_HEIGHT; i++)
     {

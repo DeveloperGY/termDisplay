@@ -19,7 +19,7 @@ int main(void)
         td_drawPoint(x, y, '@', TD_COLOR_CYAN, TD_COLOR_DEFAULT);
         td_display();
 
-        ch = getch();
+        ch = getch(0);
 
         if (ch == 'd')
         {
