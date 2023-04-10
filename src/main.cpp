@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    if (!td_initialize(40, 20))
+    if (!td_initialize(84, 40))
     {
         return -1;
     }
@@ -39,7 +39,7 @@ int main(void)
         }
     }
 
-    td_terminate();
+    td_terminate(0);
 
     return 0;
 }
