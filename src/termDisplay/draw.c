@@ -25,7 +25,7 @@ void td_display()
     char fg_color_str[3];
     char bg_color_str[3];
 
-    int index = 0;
+    size_t index = 0;
 
     for (int i=0; i<TD_HEIGHT; i++)
     {
