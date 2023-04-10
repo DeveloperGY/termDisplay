@@ -112,7 +112,7 @@ int td_initialize(int width, int height)
     return 1;
 }
 
-void td_terminate()
+void td_terminate(int clear)
 {
     terminateCharBuffer();
     terminateFGColorBuffer();
@@ -121,6 +121,11 @@ void td_terminate()
     
     TD_WIDTH = 0;
     TD_HEIGHT = 0;
+
+    if (clear)
+    {
+        printf("\x1b[1;1H\x1b[2J");
+    }
 
     printf("\x1b[?25h");
     tcsetattr(0, TCSANOW, &old_settings);
@@ -280,7 +285,7 @@ int initializePrintBuffer()
         return 0;
     }
 
-    size_t size = (12 * TD_WIDTH * TD_HEIGHT) + TD_HEIGHT;
+    size_t size = (12 * TD_WIDTH * TD_HEIGHT) + TD_HEIGHT + 1;
 
     TD_PRINT_BUFFER = (char *)malloc(size);
 

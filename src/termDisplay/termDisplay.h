@@ -96,8 +96,9 @@ int td_initialize(int width, int height);
 /**
  * @brief Terminates the library and deallocates memory
  *
+ * @param clear doesnt clear the screen on termination if clear == 0, otherwise it clears the screen
  */
-void td_terminate();
+void td_terminate(int clear);
 
 #ifdef __cplusplus
 }

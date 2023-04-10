@@ -19,8 +19,8 @@ void td_display()
         return;
     }
 
-	// printf("\e[1;1H\e[2J"); // Clear the terminal using escape sequences
-    printf("\e[H");
+    // reset the cursor to the top left with ansi escape sequences
+    printf("\x1b[H");
 
     char fg_color_str[3];
     char bg_color_str[3];
