@@ -8,35 +8,12 @@ int main(void)
         return -1;
     }
 
-    char ch;
-
-    int x = 3;
-    int y = 3;
-
-    while (ch != 'q')
+    while (getch(0) != 'q')
     {
-        td_drawTextHorizontal(0, 0, "Name: korpine", TD_COLOR_YELLOW, TD_COLOR_DEFAULT);
-        td_drawPoint(x, y, '@', TD_COLOR_CYAN, TD_COLOR_DEFAULT);
+        td_drawPoint(0, 0, '*', TD_COLOR_WHITE, TD_COLOR_DEFAULT);
+        td_drawPoint(40, 27, '*', TD_COLOR_WHITE, TD_COLOR_DEFAULT);
+        td_drawLine(0, 27, 40, 0, '*', TD_COLOR_GREEN, TD_COLOR_DEFAULT);
         td_display();
-
-        ch = getch(0);
-
-        if (ch == 'd')
-        {
-            x++;
-        }
-        if (ch == 'a')
-        {
-            x--;
-        }
-        if (ch == 'w')
-        {
-            y--;
-        }
-        if (ch == 's')
-        {
-            y++;
-        }
     }
 
     td_terminate(0);

@@ -134,110 +134,22 @@ void td_drawRect(int x, int y, unsigned int width, unsigned int height, char str
 
 void td_drawLine(int x1, int y1, int x2, int y2, char c, int fgColor, int bgColor)
 {
-    float slope = (double)(y2 - y1) / (double)(x2 - x1);
-
-    int positiveSlope = slope >= 0;
-    int majorSlope = fabs(slope) > 1;
-
-    if (positiveSlope && !majorSlope)
-    {
-        if (x2 < x1) // swap to make the line always go left to right
-        {
-            int temp = x2;
-            x2 = x1;
-            x1 = temp;
-
-            temp = y2;
-            y2 = y1;
-            y1 = temp;
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int sx = (x1 < x2) ? 1 : -1;
+    int sy = (y1 < y2) ? 1 : -1;
+    int err = dx - dy;
+    
+    while (x1 != x2 || y1 != y2) {
+        td_drawPoint(x1, y1, c, fgColor, bgColor);
+        int e2 = 2 * err;
+        if (e2 > -dy) {
+            err -= dy;
+            x1 += sx;
         }
-
-        int yOffset = 0;
-
-        for (int i=0; i<=x2-x1; i++)
-        {
-            double y = slope * (i + x1);
-            if (y - 0.5 >= yOffset)
-            {
-                yOffset++;
-            }
-            td_drawPoint(x1 + i, yOffset + y1, c, fgColor, bgColor);
-        }
-    }
-    else if (!positiveSlope && !majorSlope)
-    {
-        if (x2 < x1) // swap to make the line always go left to right
-        {
-            int temp = x2;
-            x2 = x1;
-            x1 = temp;
-
-            temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-        int yOffset = 0;
-
-        for (int i=0; i<=x2-x1; i++)
-        {
-            double y = slope * (i + x1);
-            if (y + 0.5 <= yOffset)
-            {
-                yOffset--;
-            }
-            td_drawPoint(x1 + i, yOffset + y1, c, fgColor, bgColor);
-        }
-    }
-    else if (positiveSlope && majorSlope)
-    {
-        if (y2 < y1) // swap to make the line always go left to right
-        {
-            int temp = x2;
-            x2 = x1;
-            x1 = temp;
-
-            temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-
-        int xOffset = 0;
-
-        for (int i=0; i<=y2-y1; i++)
-        {
-            double x = (double)(i+y1)/slope;
-
-            if (x - 0.5 >= xOffset)
-            {
-                xOffset++;
-            }
-            td_drawPoint(xOffset + x1, i + y1, c, fgColor, bgColor);
-        }
-    }
-    else if (!positiveSlope && majorSlope)
-    {
-        if (y2 < y1) // swap to make the line always go left to right
-        {
-            int temp = x2;
-            x2 = x1;
-            x1 = temp;
-
-            temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-
-        int xOffset = 0;
-
-        for (int i=0; i<=y2-y1; i++)
-        {
-            double x = (double)(i+y1)/slope;
-
-            if (x + 0.5 <= xOffset)
-            {
-                xOffset--;
-            }
-            td_drawPoint(xOffset + x1, i + y1, c, fgColor, bgColor);
+        if (e2 < dx) {
+            err += dx;
+            y1 += sy;
         }
     }
 
