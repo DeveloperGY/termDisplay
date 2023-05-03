@@ -179,3 +179,12 @@ void td_drawTextVertical(int x, int y, const char *str, int fgColor, int bgColor
 
     return;
 }
+
+// courtesy of CheetahGamer587
+void td_drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, char c,int fgColor, int bgColor) {
+    td_drawLine(x1,y1,x2,y2,c,fgColor,bgColor);
+    td_drawLine(x2,y2,x3,y3,c,fgColor,bgColor);
+    td_drawLine(x3,y3,x1,y1,c,fgColor,bgColor);
+    
+    return;
+}
