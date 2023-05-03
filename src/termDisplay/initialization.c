@@ -143,7 +143,7 @@ int initializeCharBuffer()
 
     for (int i=0; i<TD_HEIGHT; i++)
     {
-        TD_CHAR_BUFFER[i] = malloc(sizeof(char) * TD_WIDTH);
+        TD_CHAR_BUFFER[i] = (char *)malloc(sizeof(char) * TD_WIDTH);
 
         if (!TD_CHAR_BUFFER[i]) // malloc failed
         {
@@ -190,7 +190,7 @@ int initializeFGColorBuffer()
 
     for (int i=0; i<TD_HEIGHT; i++)
     {
-        TD_FG_COLOR_BUFFER[i] = malloc(sizeof(int) * TD_WIDTH);
+        TD_FG_COLOR_BUFFER[i] = (int *)malloc(sizeof(int) * TD_WIDTH);
 
         if (!TD_FG_COLOR_BUFFER[i]) // malloc failed
         {
@@ -237,7 +237,7 @@ int initializeBGColorBuffer()
 
     for (int i=0; i<TD_HEIGHT; i++)
     {
-        TD_BG_COLOR_BUFFER[i] = malloc(sizeof(int) * TD_WIDTH);
+        TD_BG_COLOR_BUFFER[i] = (int *)malloc(sizeof(int) * TD_WIDTH);
 
         if (!TD_BG_COLOR_BUFFER[i]) // malloc failed
         {
