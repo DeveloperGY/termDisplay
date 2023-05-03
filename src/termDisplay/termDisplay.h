@@ -214,6 +214,23 @@ void td_drawTextHorizontal(int x, int y, const char *str, int fgColor, int bgCol
 */
 void td_drawTextVertical(int x, int y, const char *str, int fgColor, int bgColor);
 
+/**
+ * @brief Draws a line triangle at the specified coordinates with the specified colors. Credit: Cheetah
+ * 
+ * @param x1 First x coord
+ * @param y1 First y coord
+ * @param x2 Second x coord
+ * @param y2 Second y coord
+ * @param x3 Third x coord
+ * @param y3 Third y coord
+ * @param c The character to draw with
+ * 
+ * @param fgColor The foreground color
+ * @param bgColor The background color
+ * 
+ */
+void td_drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, char c, int fgColor, int bgColor);
+
 #ifdef __cplusplus
 }
 #endif
