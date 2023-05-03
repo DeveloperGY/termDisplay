@@ -8,7 +8,7 @@ int main(void)
         return -1;
     }
 
-    while (getch(0) != 'q')
+    while (1)
     {
         td_drawPoint(0, 0, '*', TD_COLOR_WHITE, TD_COLOR_DEFAULT);
         td_drawPoint(40, 27, '*', TD_COLOR_WHITE, TD_COLOR_DEFAULT);

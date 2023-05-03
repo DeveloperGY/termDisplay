@@ -6,9 +6,6 @@
 #include <math.h>
 #include <string.h>
 
-#include <termios.h>
-#include <sys/select.h>
-
 /**
  * @brief Width of the buffers
 */
@@ -62,17 +59,6 @@ extern int TD_COLOR_WHITE;
  * @brief The offset between ansi color codes
 */
 extern int TD_FG_TO_BG_OFFSET;
-
-/**
- * @brief Saved terminal settings
- * 
-*/
-extern struct termios old_settings;
-
-/**
- * @brief TD terminal settings
-*/
-extern struct termios new_settings;
 
 /**
  * Initialization Functions
@@ -227,30 +213,6 @@ void td_drawTextHorizontal(int x, int y, const char *str, int fgColor, int bgCol
  *  
 */
 void td_drawTextVertical(int x, int y, const char *str, int fgColor, int bgColor);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-/**
- * Helper Functions
- * 
-*/
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * @brief An unbuffered character input function to remove the need
- *        to press enter to input a character
- *
- * @param max_wait_time the amount of time in milliseconds to wait for input, use zero if you dont want to wait
- * 
- * @warning Linux only!!!
- * @return returns the pressed character, or NULL if there is no pressed character or there is an error
-*/
-char getch(unsigned int max_wait_time);
 
 #ifdef __cplusplus
 }

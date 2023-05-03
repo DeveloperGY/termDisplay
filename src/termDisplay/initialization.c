@@ -7,9 +7,6 @@ int **TD_FG_COLOR_BUFFER = NULL;
 int **TD_BG_COLOR_BUFFER = NULL;
 char *TD_PRINT_BUFFER    = NULL;
 
-struct termios old_settings;
-struct termios new_settings;
-
 /**
  * @brief Initializes the character buffer if it hasn't already been initialized
  * 
@@ -101,12 +98,6 @@ int td_initialize(int width, int height)
         return 0;
     }
 
-    tcgetattr(0, &old_settings);
-    new_settings = old_settings;
-    new_settings.c_lflag &= ~ICANON;
-    new_settings.c_lflag &= ~ECHO;
-    tcsetattr(0, TCSANOW, &new_settings);
-
     printf("\x1b[?25l\x1b[H\x1b[2J");
 
     return 1;
@@ -128,7 +119,6 @@ void td_terminate(int clear)
     }
 
     printf("\x1b[?25h");
-    tcsetattr(0, TCSANOW, &old_settings);
     return;
 }
 
