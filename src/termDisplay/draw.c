@@ -152,6 +152,7 @@ void td_drawLine(int x1, int y1, int x2, int y2, char c, int fgColor, int bgColo
             y1 += sy;
         }
     }
+    td_drawPoint(x1, y1, c, fgColor, bgColor);
 
     return;
 }
